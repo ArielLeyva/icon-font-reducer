@@ -96,8 +96,8 @@ The Icon Font Reducer configuration must be provided through a .js or .ts file t
 ```js
 export default {
   lib: "materialdesign",
-  source: "/src",
-  dest: "/dist/icon-fonts-reduced",
+  source: "./src",
+  dest: "./dist/icon-fonts-reduced",
   additional: ["mdi-menu", "mdi-menu-down", "mdi-chevron-left", "mdi-chevron-right", "mdi-chevron-down"],
   origin: {
     css: "src/assets/css/bootstrap-icons.min.css"
@@ -112,14 +112,14 @@ These are the available configuration properties:
 | Key | Type | Description |
 |-----------|-----------|-----------|
 | `lib` | string or array | Specify the library you are using to render icons in your project. Review the [Available libs][available-libs] for more information. |
-| `source` | string or array | Directory path(s) to scan for used icons from the specified library |
-| `dest` | string | Destination path for the reduced icon font files |
+| `source` | string or array | Directory path(s) to scan for used icons from the specified library. It can be an absolute or relative path. |
+| `dest` | string | Destination path for the reduced icon font files. It can be an absolute or relative path. |
 | `additional` | string or array | CSS icon classes to be added to the icon font files. Icon Font Reducer detects the icons used in your project using regular expressions. Occasionally, depending on your code, this detection may not work for some icons, and you can manually pass the undetected icons to this configuration. |
 | `excluded` | string or array | Icon Font Reducer excludes from scanning for your icons any files that cannot be read as text (such as binary files, images, audio, etc.). This setting specifies other files or directories to be excluded from the scan. You can use an array of regular expressions if needed. |
 | `origin.css` | string | The CSS file of the icon library you are using. By default, Icon Font Reducer uses the file located in the `node_modules` directory of your library; you can specify a different path if needed (for example, when not using the npm ecosystem). |
 | `origin.fonts` | string | Directory where the original (or unreduced) font files of your icon library are located. By default, Icon Font Reducer uses the directory located in `node_modules` of your library to locate these files; you can specify a different directory if necessary (for example, when you are not using the npm ecosystem). |
 
-> [!INFO]
+> [!NOTE]
 > All configuration properties are optional.
 
 ---
@@ -141,7 +141,7 @@ All configuration properties that can be represented as strings are also availab
 For example, this is how you can specify the output path for icon font files using the `--dest` flag
 
 ```sh
-npm run icon-font-reducer --dest="/public/build/icons"
+npm run icon-font-reducer --dest="./public/build/icons"
 ```
 
 ### Config flag
