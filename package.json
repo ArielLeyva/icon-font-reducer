@@ -1,0 +1,21 @@
+{
+  "name": "icon-font-reducer",
+  "version": "1.0.0",
+  "bin": {
+    "icon-font-reducer": "./bin/icon-font-reducer.js"
+  },
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "css": "^3.0.0",
+    "inquirer": "^13.4.1",
+    "subset-font": "^2.5.0"
+  }
+}
