@@ -20,4 +20,15 @@ export const BOOTSTRAP = {
   selector: (cls) => `.${cls}::before`,
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP];
+export const REMIX = {
+  id: "remix",
+  name: "Remix",
+  origin: {
+    css: "node_modules/remixicon/fonts/remixicon.css",
+    fonts: "node_modules/remixicon/fonts",
+  },
+  expression: { classes: /ri-[a-z0-9-]+/gi, files: /remixicon\.(?:eot|ttf|woff2|woff)\b/gi },
+  selector: (cls) => `.${cls}:before`,
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX];

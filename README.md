@@ -86,6 +86,7 @@ bootstrap-icons.woff2: 130.90 KB -> 9.39 KB (92.83% reduction)
 |----------|-----------|
 | [Material Design Icons](https://pictogrammers.com/library/mdi/) | `materialdesign` |
 | [Bootstrap Icons](https://icons.getbootstrap.com/) | `bootstrap` |
+| [Remix Icons](https://remixicon.com/) | `remix` |
 
 ---
 
