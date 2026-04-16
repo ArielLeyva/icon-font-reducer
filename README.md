@@ -41,12 +41,12 @@ Icon Font Reducer is distributed as a npm package.
 npm install icon-font-reducer --save-dev
 ```
 
-Add the command `font-reducer` to your `package.json`
+Add the command `icon-font-reducer` to your `package.json`
 
 ```json
 {
   "scripts": {
-    "font-reducer": "font-reducer"
+    "icon-font-reducer": "icon-font-reducer"
   }
 }
 ```
