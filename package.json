@@ -1,6 +1,6 @@
 {
   "name": "icon-font-reducer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "icon-font-reducer": "bin/icon-font-reducer.js"
   },
