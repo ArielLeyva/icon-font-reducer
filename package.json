@@ -4,15 +4,24 @@
   "bin": {
     "icon-font-reducer": "./bin/icon-font-reducer.js"
   },
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "CLI tool to reduce icon fonts by subsetting only used glyphs",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "keywords": [
+    "icon",
+    "font",
+    "subset",
+    "cli",
+    "optimization"
+  ],
+  "author": "Ariel Leyva",
+  "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "css": "^3.0.0",
     "inquirer": "^13.4.1",

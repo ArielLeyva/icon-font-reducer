@@ -61,9 +61,9 @@ export async function subsetFontFromCodes(sourceFontFile, destFontDir, codes) {
     targetFormat: target,
   });
 
-  const name = path.basename(sourceFontFile);
-
+  // Save file in destination folder
   fs.mkdirSync(destFontDir, { recursive: true });
+  const name = path.basename(sourceFontFile);
   fs.writeFileSync(`${destFontDir}/${name}`, subset);
 
   // Log the file size reduction

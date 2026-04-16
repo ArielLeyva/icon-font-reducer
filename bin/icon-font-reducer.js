@@ -62,10 +62,11 @@ const answers = await inquirer.prompt([
   },
 ]);
 
+// Get destination folder
+const dest = config.dest ?? path.join(process.cwd(), "icon-font-reducer-dest");
 // Subset the selected font files
 for (const file of answers.files) {
-  const dest = config.dest ?? path.join(process.cwd(), "font-reducer-dest");
   await subsetFontFromCodes(file, dest, codes);
 }
 
-console.log(`${codes.length} icons saved in your font files.`);
+console.log(`${codes.length} icons saved in ${path.resolve(dest)}.`);
