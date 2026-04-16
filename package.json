@@ -2,7 +2,7 @@
   "name": "icon-font-reducer",
   "version": "1.0.1",
   "bin": {
-    "icon-font-reducer": "./bin/icon-font-reducer.js"
+    "icon-font-reducer": "/bin/icon-font-reducer.js"
   },
   "description": "CLI tool to reduce icon fonts by subsetting only used glyphs",
   "files": [
