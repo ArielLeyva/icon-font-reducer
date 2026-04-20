@@ -6,7 +6,7 @@ import { pathToFileURL } from "url";
 import { AVAILABLE_LIBS } from "./sources.js";
 import { isExcluded } from "./utils.js";
 
-const SUPPORTED_FLAGS = ["config", "lib", "source", "dest", "origin.css", "origin.fonts", "additional"];
+const SUPPORTED_FLAGS = ["config", "lib", "source", "dest", "origin.css", "origin.fonts", "additional", "property"];
 
 const EXCLUDED_DIRS = [/^node_modules$/, /^dist$/, /^build$/, /^vendor$/, /^assets$/, /^\.git$/, /^\.vscode$/, /^\.idea$/];
 
