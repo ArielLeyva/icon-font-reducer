@@ -25,6 +25,7 @@
   "dependencies": {
     "css": "^3.0.0",
     "inquirer": "^13.4.1",
+    "sass": "^1.99.0",
     "subset-font": "^2.5.0"
   }
 }

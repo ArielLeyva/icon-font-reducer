@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import css from "css";
+import * as sass from 'sass';
 import inquirer from "inquirer";
 import path from "path";
 
@@ -12,7 +13,7 @@ console.log("Initializing font reducer...");
 const config = await getConfig();
 
 // Load the CSS file and parse it
-const content = await loadCSSFile(config.origin.css);
+const content = config.origin.css.endsWith('.css') ? await loadCSSFile(config.origin.css) : sass.compile(config.origin.css).css;
 const ast = css.parse(content);
 
 // Find icons usage in the codebase
