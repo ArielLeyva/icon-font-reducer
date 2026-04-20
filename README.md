@@ -120,6 +120,7 @@ These are the available configuration properties:
 | `excluded` | string or array | Icon Font Reducer excludes from scanning for your icons any files that cannot be read as text (such as binary files, images, audio, etc.). This setting specifies other files or directories to be excluded from the scan. You can use an array of regular expressions if needed. |
 | `origin.css` | string | The CSS o SCSS file of the icon library you are using. By default, Icon Font Reducer uses the file located in the `node_modules` directory of your library; you can specify a different path if needed (for example, when not using the npm ecosystem). If you specify an SCSS file, it will first be compiled to obtain its CSS content. |
 | `origin.fonts` | string | Directory where the original (or unreduced) font files of your icon library are located. By default, Icon Font Reducer uses the directory located in `node_modules` of your library to locate these files; you can specify a different directory if necessary (for example, when you are not using the npm ecosystem). |
+| `property` | string | Name of the CSS property from which to obtain the icon glyph; by default it is "content" |
 
 > [!NOTE]
 > All configuration properties are optional.
@@ -139,6 +140,7 @@ All configuration properties that can be represented as strings are also availab
 | `--dest` | Destination path for the reduced icon font files |
 | `--origin.css` | The CSS or SCSS file of the icon library you are using. By default, Icon Font Reducer uses the file located in the `node_modules` directory of your library; you can specify a different path if needed (for example, when not using the npm ecosystem). If you specify an SCSS file, it will first be compiled to obtain its CSS content. |
 | `--origin.fonts` | Directory where the original (or unreduced) font files of your icon library are located. By default, Icon Font Reducer uses the directory located in `node_modules` of your library to locate these files; you can specify a different directory if necessary (for example, when you are not using the npm ecosystem). |
+| `--property` | Name of the CSS property from which to obtain the icon glyph; by default it is "content" |
 
 For example, this is how you can specify the output path for icon font files using the `--dest` flag
 
@@ -170,6 +172,7 @@ export default {
     },
     expression: { classes: /my-icons-[a-z0-9-]+/gi, files: /library-name_webfont-[a-z0-9-]+/gi },
     selector: (cls) => `.${cls}::before`,
+    property: "content"
   },
 };
 ```
@@ -184,6 +187,7 @@ These are all the properties you will need to define with examples using the [Bo
 | `expression.classes` | RegExp | Regular expression to find the icons used in your project. It must be a regular expression that matches the CSS class of the library. [Here][how-expressionclasses-works-in-bootstrap-icons] is a detailed explanation of this property. | /bi-[a-z0-9-]+/gi |
 | `expression.files` | RegExp or undefined | Regular expression to find the original icon files in the library. This must be a regular expression that matches the filenames you need to reduce using Icon Font Reducer. You can leave it blank to list all files found in `origin.fonts` and then select the files you need to reduce via the console. [Here][how-expressionfiles-works-in-bootstrap-icons] is a detailed explanation of this property. | /bootstrap-icons+/gi |
 | `selector` | Function(string) => string | A function that takes as an argument the name of the icon found in your project and returns the CSS selector where the CSS property "content" is located with the font glyph. [Here][how-selector-works-in-bootstrap-icons] is a detailed explanation of this property. | (cls) => `.${cls}::before` |
+| `property` | string | Name of the CSS property from which to obtain the icon glyph. It is optional and by default is "content" | content |
 
 #### How `expression.classes` works in Bootstrap Icons
 
