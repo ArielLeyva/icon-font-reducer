@@ -31,4 +31,26 @@ export const REMIX = {
   selector: (cls) => `.${cls}:before`,
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX];
+export const COREUI_LINEAR = {
+  id: "coreui-linear",
+  name: "CoreUI (Linear Icons)",
+  origin: {
+    css: "node_modules/@coreui/icons/scss/free/_icons.scss",
+    fonts: "node_modules/@coreui/icons/fonts/",
+  },
+  expression: { classes: /cil-[a-z0-9-]+/gi, files: /CoreUI-Icons-Free\.[a-z0-9-]+/gi },
+  selector: (cls) => `.${cls}:before`,
+};
+
+export const COREUI_BRAND = {
+  id: "coreui-brand",
+  name: "CoreUI (Brand Icons)",
+  origin: {
+    css: "node_modules/@coreui/icons/scss/brand/_icons.scss",
+    fonts: "node_modules/@coreui/icons/fonts/",
+  },
+  expression: { classes: /cil-[a-z0-9-]+/gi, files: /CoreUI-Icons-Brand\.[a-z0-9-]+/gi },
+  selector: (cls) => `.${cls}:before`,
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND];
