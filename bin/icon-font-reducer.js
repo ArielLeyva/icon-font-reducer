@@ -35,7 +35,7 @@ ast.stylesheet.rules.forEach((rule) => {
     if (rule.selectors && rule.selectors.includes(config.selector(cls))) {
       // Extract the content value from the declarations
       rule.declarations.forEach((decl) => {
-        if (decl.property === "content") {
+        if (decl.property === config.property) {
           codes.push(decl.value);
         }
       });

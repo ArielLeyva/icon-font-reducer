@@ -141,6 +141,10 @@ export async function getConfig() {
     config.additional = [config.additional];
   }
 
+  // Set property if provided not in flags or config file
+  if (config.property == undefined) {
+    config.property = source.property ?? "content";
+  }
   return config;
 }
 
