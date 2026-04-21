@@ -53,4 +53,16 @@ export const COREUI_BRAND = {
   selector: (cls) => `.${cls}:before`,
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND];
+export const FONT_AWESOME_FREE = {
+  id: "font-awesome-free",
+  name: "Font Awesome (Free)",
+  origin: {
+    css: "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+    fonts: "node_modules/@fortawesome/fontawesome-free/webfonts/",
+  },
+  expression: { classes: /fa-[a-z0-9-]+/gi, files: /fa\-[a-z0-9-]+/gi },
+  selector: (cls) => `.${cls}`,
+  property: "--fa",
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE];
