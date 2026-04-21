@@ -65,4 +65,15 @@ export const FONT_AWESOME_FREE = {
   property: "--fa",
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE];
+export const LINE_AWESOME = {
+  id: "line-aswesome",
+  name: "Line Aswesome",
+  origin: {
+    css: "node_modules/line-awesome/dist/line-awesome/css/line-awesome.css",
+    fonts: "node_modules/line-awesome/dist/line-awesome/fonts/",
+  },
+  expression: { classes: /la-[a-z0-9-]+/gi, files: /la\-[a-z0-9-]+/gi },
+  selector: (cls) => `.${cls}:before`,
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME];
