@@ -4,7 +4,7 @@ import * as sass from 'sass';
 import inquirer from "inquirer";
 import path from "path";
 
-import { loadCSSFile, findExprInDir, findFilesInDir, SUPPORTED_FORMATS } from "../src/utils.js";
+import { loadCSSFile, findExprInDir, findFilesInDir, SUPPORTED_FORMATS, FONT_EXTENSIONS } from "../src/utils.js";
 import { subsetFontFromCodes } from "../src/font-subset.js";
 import { getConfig } from "../src/init-config.js";
 
@@ -47,11 +47,13 @@ console.log(`${codes.length} icons found in your code.`);
 // Load font files in directory
 console.log(`Find font files in the codebase...`);
 const fontFiles = await findFilesInDir(config.origin.fonts, config.expression.files);
-const items = fontFiles.map((file) => ({
-  name: `${file}${Object.keys(SUPPORTED_FORMATS).includes(path.extname(file).toLowerCase()) ? "" : " (Not supported format)"}`,
-  value: path.join(config.origin.fonts, file),
-  default: true,
-}));
+const items = fontFiles
+  .filter((file) => FONT_EXTENSIONS.includes(path.extname(file).toLowerCase()))
+  .map((file) => ({
+    name: `${file}${Object.keys(SUPPORTED_FORMATS).includes(path.extname(file).toLowerCase()) ? "" : " (Not supported format)"}`,
+    value: path.join(config.origin.fonts, file),
+    default: true,
+  }));
 
 // Prompt user to select font files to subset
 const answers = await inquirer.prompt([

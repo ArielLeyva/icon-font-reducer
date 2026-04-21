@@ -9,6 +9,8 @@ export const SUPPORTED_FORMATS = {
   ".woff2": "woff2",
 };
 
+export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];
+
 /**
  * Load a CSS file as text
  * @param {string} path Path to the css file
