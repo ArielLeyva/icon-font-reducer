@@ -12,10 +12,6 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="MIT License">
   </a>
-
-  <a href="https://bundlephobia.com/package/icon-font-reducer">
-    <img src="https://img.shields.io/bundlephobia/minzip/icon-font-reducer?style=flat-square" alt="Bundle Size">
-  </a>
 </p>
 
 Icon Font Reducer removes unused icons from your project's icon font files, reducing the size of these files and consequently increasing your website's loading speed.
