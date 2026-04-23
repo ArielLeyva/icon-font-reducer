@@ -76,4 +76,15 @@ export const LINE_AWESOME = {
   selector: (cls) => `.${cls}:before`,
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME];
+export const LINE_ICONS = {
+  id: "line-icons",
+  name: "Line Icons",
+  origin: {
+    css: "node_modules/lineicons/dist/lineicons.css",
+    fonts: "node_modules/lineicons/dist/",
+  },
+  expression: { classes: /lni-[a-z0-9-]+/gi, files: /[a-z0-9-]+/gi },
+  selector: (cls) => `.${cls}::before`,
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME, LINE_ICONS];
