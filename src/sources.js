@@ -87,4 +87,15 @@ export const LINE_ICONS = {
   selector: (cls) => `.${cls}::before`,
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME, LINE_ICONS];
+export const LUCIDE = {
+  id: "lucide-static",
+  name: "Lucide Icons (Static)",
+  origin: {
+    css: "node_modules/lucide-static/font/lucide.css",
+    fonts: "node_modules/lucide-static/font/",
+  },
+  expression: { classes: /icon-[a-z0-9-]+/gi, files: /lucide\.[a-z0-9-]+/gi },
+  selector: (cls) => `.${cls}::before`,
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME, LINE_ICONS, LUCIDE];
