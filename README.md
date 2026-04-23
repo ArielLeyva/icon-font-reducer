@@ -91,6 +91,7 @@ bootstrap-icons.woff2: 130.90 KB -> 9.39 KB (92.83% reduction)
 | [FontAwesome (Free)](https://fontawesome.com/) | `font-awesome-free` |
 | [LineAwesome](https://icons8.com/line-awesome/) | `line-aswesome` |
 | [Lineicons](https://lineicons.com/) | `line-icons` |
+| [Lucide (Static)](https://lucide.dev/guide/static/font/) | `lucide-static` |
 
 ---
 
