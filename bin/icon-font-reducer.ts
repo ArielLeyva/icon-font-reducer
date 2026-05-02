@@ -11,7 +11,6 @@ import { getConfig } from "../src/init-config.js";
 console.log("Initializing font reducer...");
 
 const config = await getConfig();
-console.log(config);
 
 // Load the CSS file and parse it
 const content = config.origin.css!.endsWith(".css") ? await loadCSSFile(config.origin.css!) : sass.compile(config.origin.css!).css;
