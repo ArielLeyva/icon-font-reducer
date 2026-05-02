@@ -2,12 +2,18 @@
   "name": "icon-font-reducer",
   "version": "1.5.0",
   "bin": {
-    "icon-font-reducer": "bin/icon-font-reducer.js"
+    "icon-font-reducer": "dist/bin/icon-font-reducer.js"
   },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "description": "CLI tool to reduce icon fonts by subsetting only used glyphs",
   "files": [
-    "bin",
-    "src"
+    "dist"
   ],
   "keywords": [
     "icon",
@@ -27,6 +33,20 @@
     "inquirer": "^13.4.1",
     "sass": "^1.99.0",
     "subset-font": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/css": "^0.0.38",
+    "@types/node": "^25.6.0",
+    "@types/subset-font": "^2.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./cli": "./dist/bin/icon-font-reducer.js"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,6 @@
-export const MATERIAL_DESIGN = {
+import { LibSource } from "./types/config.js";
+
+export const MATERIAL_DESIGN: LibSource = {
   id: "materialdesign",
   name: "Material Design",
   origin: {
@@ -6,10 +8,10 @@ export const MATERIAL_DESIGN = {
     fonts: "node_modules/@mdi/font/fonts/",
   },
   expression: { classes: /mdi-[a-z0-9-]+/gi, files: /materialdesignicons-[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}::before`,
+  selector: (cls: string) => `.${cls}::before`,
 };
 
-export const BOOTSTRAP = {
+export const BOOTSTRAP: LibSource = {
   id: "bootstrap",
   name: "Bootstrap",
   origin: {
@@ -17,10 +19,10 @@ export const BOOTSTRAP = {
     fonts: "node_modules/bootstrap-icons/font/fonts",
   },
   expression: { classes: /bi-[a-z0-9-]+/gi, files: /bootstrap-icons+/gi },
-  selector: (cls) => `.${cls}::before`,
+  selector: (cls: string) => `.${cls}::before`,
 };
 
-export const REMIX = {
+export const REMIX: LibSource = {
   id: "remix",
   name: "Remix",
   origin: {
@@ -28,10 +30,10 @@ export const REMIX = {
     fonts: "node_modules/remixicon/fonts",
   },
   expression: { classes: /ri-[a-z0-9-]+/gi, files: /remixicon\.(?:eot|ttf|woff2|woff)\b/gi },
-  selector: (cls) => `.${cls}:before`,
+  selector: (cls: string) => `.${cls}:before`,
 };
 
-export const COREUI_LINEAR = {
+export const COREUI_LINEAR: LibSource = {
   id: "coreui-linear",
   name: "CoreUI (Linear Icons)",
   origin: {
@@ -39,10 +41,10 @@ export const COREUI_LINEAR = {
     fonts: "node_modules/@coreui/icons/fonts/",
   },
   expression: { classes: /cil-[a-z0-9-]+/gi, files: /CoreUI-Icons-Free\.[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}:before`,
+  selector: (cls: string) => `.${cls}:before`,
 };
 
-export const COREUI_BRAND = {
+export const COREUI_BRAND: LibSource = {
   id: "coreui-brand",
   name: "CoreUI (Brand Icons)",
   origin: {
@@ -50,10 +52,10 @@ export const COREUI_BRAND = {
     fonts: "node_modules/@coreui/icons/fonts/",
   },
   expression: { classes: /cil-[a-z0-9-]+/gi, files: /CoreUI-Icons-Brand\.[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}:before`,
+  selector: (cls: string) => `.${cls}:before`,
 };
 
-export const FONT_AWESOME_FREE = {
+export const FONT_AWESOME_FREE: LibSource = {
   id: "font-awesome-free",
   name: "Font Awesome (Free)",
   origin: {
@@ -61,11 +63,11 @@ export const FONT_AWESOME_FREE = {
     fonts: "node_modules/@fortawesome/fontawesome-free/webfonts/",
   },
   expression: { classes: /fa-[a-z0-9-]+/gi, files: /fa\-[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}`,
+  selector: (cls: string) => `.${cls}`,
   property: "--fa",
 };
 
-export const LINE_AWESOME = {
+export const LINE_AWESOME: LibSource = {
   id: "line-aswesome",
   name: "Line Aswesome",
   origin: {
@@ -73,10 +75,10 @@ export const LINE_AWESOME = {
     fonts: "node_modules/line-awesome/dist/line-awesome/fonts/",
   },
   expression: { classes: /la-[a-z0-9-]+/gi, files: /la\-[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}:before`,
+  selector: (cls: string) => `.${cls}:before`,
 };
 
-export const LINE_ICONS = {
+export const LINE_ICONS: LibSource = {
   id: "line-icons",
   name: "Line Icons",
   origin: {
@@ -84,10 +86,10 @@ export const LINE_ICONS = {
     fonts: "node_modules/lineicons/dist/",
   },
   expression: { classes: /lni-[a-z0-9-]+/gi, files: /[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}::before`,
+  selector: (cls: string) => `.${cls}::before`,
 };
 
-export const LUCIDE = {
+export const LUCIDE: LibSource = {
   id: "lucide-static",
   name: "Lucide Icons (Static)",
   origin: {
@@ -95,7 +97,7 @@ export const LUCIDE = {
     fonts: "node_modules/lucide-static/font/",
   },
   expression: { classes: /icon-[a-z0-9-]+/gi, files: /lucide\.[a-z0-9-]+/gi },
-  selector: (cls) => `.${cls}::before`,
+  selector: (cls: string) => `.${cls}::before`,
 };
 
 export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME, LINE_ICONS, LUCIDE];

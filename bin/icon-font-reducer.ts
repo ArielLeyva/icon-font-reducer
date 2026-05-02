@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import css from "css";
-import * as sass from 'sass';
+import * as sass from "sass";
 import inquirer from "inquirer";
 import path from "path";
 
@@ -11,13 +11,17 @@ import { getConfig } from "../src/init-config.js";
 console.log("Initializing font reducer...");
 
 const config = await getConfig();
+console.log(config);
 
 // Load the CSS file and parse it
-const content = config.origin.css.endsWith('.css') ? await loadCSSFile(config.origin.css) : sass.compile(config.origin.css).css;
-const ast = css.parse(content);
+const content = config.origin.css!.endsWith(".css") ? await loadCSSFile(config.origin.css!) : sass.compile(config.origin.css!).css;
+const ast: css.Stylesheet = css.parse(content);
+if (ast == undefined) {
+  throw new Error("The CSS file could not be parsed.");
+}
 
 // Find icons usage in the codebase
-const classes = [];
+const classes: Array<string> = [];
 for (const source of config.source) {
   const found = await findExprInDir(source, config.expression.classes, config.excluded);
   classes.push(...found);
@@ -28,13 +32,13 @@ if (config.additional) {
 }
 
 // Find the content values for the used icons
-const codes = [];
-ast.stylesheet.rules.forEach((rule) => {
+const codes: Array<string> = [];
+ast.stylesheet!.rules.forEach((rule: any) => {
   for (const cls of classes) {
     // Find rules that match the source selector
     if (rule.selectors && rule.selectors.includes(config.selector(cls))) {
       // Extract the content value from the declarations
-      rule.declarations.forEach((decl) => {
+      rule.declarations.forEach((decl: any) => {
         if (decl.property === config.property) {
           codes.push(decl.value);
         }
@@ -46,12 +50,12 @@ console.log(`${codes.length} icons found in your code.`);
 
 // Load font files in directory
 console.log(`Find font files in the codebase...`);
-const fontFiles = await findFilesInDir(config.origin.fonts, config.expression.files);
+const fontFiles = await findFilesInDir(config.origin.fonts!, config.expression.files);
 const items = fontFiles
   .filter((file) => FONT_EXTENSIONS.includes(path.extname(file).toLowerCase()))
   .map((file) => ({
     name: `${file}${Object.keys(SUPPORTED_FORMATS).includes(path.extname(file).toLowerCase()) ? "" : " (Not supported format)"}`,
-    value: path.join(config.origin.fonts, file),
+    value: path.join(config.origin.fonts!, file),
     default: true,
   }));
 

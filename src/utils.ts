@@ -7,7 +7,7 @@ export const SUPPORTED_FORMATS = {
   ".otf": "sfnt",
   ".woff": "woff",
   ".woff2": "woff2",
-};
+} as const;
 
 export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];
 
@@ -16,21 +16,21 @@ export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];
  * @param {string} path Path to the css file
  * @returns {string} The content of the CSS file
  */
-export async function loadCSSFile(path) {
+export async function loadCSSFile(path: string): Promise<string> {
   return await readFile(path, "utf8");
 }
 
 /**
  *
  * @param {string} dir Path to the directory to search
- * @param {string} expr Regular expression to search in the files
+ * @param {RegExp} expr Regular expression to search in the files
  * @param {array} excluded An array of patterns (strings or regular expressions) to exclude files and directories from the search. If a file or directory name matches any of the patterns in this array, it will be skipped during the search.
  * @returns {array} An array of unique matches found in the files of the directory and its subdirectories that match the regular expression provided in expr, excluding any files or directories that match the patterns in the excluded array.
  */
-export async function findExprInDir(dir, expr, excluded = []) {
-  const results = new Set();
+export async function findExprInDir(dir: string, expr: RegExp, excluded: Array<string | RegExp> = []): Promise<Array<string>> {
+  const results = new Set<string>();
 
-  async function walk(currentPath) {
+  async function walk(currentPath: string) {
     const normalized = path.normalize(currentPath);
     const entries = await readdir(normalized, { withFileTypes: true });
 
@@ -54,7 +54,7 @@ export async function findExprInDir(dir, expr, excluded = []) {
         const matches = content.match(expr);
 
         if (matches) {
-          matches.forEach((m) => results.add(m));
+          matches.forEach((m: string) => results.add(m));
         }
       }
     }
@@ -67,10 +67,10 @@ export async function findExprInDir(dir, expr, excluded = []) {
 /**
  *
  * @param {string} dir Path to the directory to search
- * @param {string} expr Regular expression to search in the files.
- * @returns
+ * @param {RegExp} expr Regular expression to search in the files.
+ * @return {Promise<Array<string>>} Array with files path that matches with expr
  */
-export async function findFilesInDir(dir, expr) {
+export async function findFilesInDir(dir: string, expr: RegExp): Promise<Array<string>> {
   const results = [];
   const entries = await readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
@@ -96,7 +96,7 @@ export async function findFilesInDir(dir, expr) {
  * @param {array} patters An array of patterns (strings or regular expressions) to check against the directory name
  * @returns true if the directory name matches any of the patterns in patters, false otherwise
  */
-export function isExcluded(value, patters) {
+export function isExcluded(value: string, patters: Array<string | RegExp>): boolean {
   return patters.some((item) => {
     if (item instanceof RegExp) {
       return item.test(value);
@@ -111,7 +111,7 @@ export function isExcluded(value, patters) {
  * @param {string} filePath Path to the file to check
  * @returns {boolean} true if the file is a text file, false otherwise
  */
-export function isTextFile(filePath) {
+export function isTextFile(filePath: string): boolean {
   const buffer = fs.readFileSync(filePath, { encoding: null, flag: "r" }).subarray(0, 512);
 
   for (const byte of buffer) {
@@ -122,11 +122,11 @@ export function isTextFile(filePath) {
 }
 
 /**
- * Parse a file size in bytes and return a human-readable string with the appropriate unit (B, KB, MB). 
+ * Parse a file size in bytes and return a human-readable string with the appropriate unit (B, KB, MB).
  * @param {number} size The size of the file in bytes
  * @returns {string} A human-readable string representing the file size with the appropriate unit (B, KB, MB)
  */
-export function parseFileSize(size) {
+export function parseFileSize(size: number): string {
   if (size < 1024) {
     return `${size} B`;
   } else if (size < 1024 * 1024) {
