@@ -100,6 +100,9 @@ export async function getConfig(): Promise<SubsetConfig> {
 
 export async function getNonIntercativeConfig(baseConfig: IconFontReducerConfig | undefined): Promise<SubsetConfig> {
   const config = baseConfig ?? (await loadBaseConfig(true));
+  if (config.origin == undefined) {
+    config.origin = {};
+  }
 
   const context: SubsetConfig = {
     origin: config.origin!,
