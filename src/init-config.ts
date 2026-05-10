@@ -191,7 +191,7 @@ async function loadBaseConfig(silent: boolean): Promise<IconFontReducerConfig> {
  * @param {string} filePath Path to the configuration file
  * @returns {IconFontReducerConfig} Configuration passed in config file
  */
-async function loadConfigFromFile(filePath: string): Promise<IconFontReducerConfig> {
+export async function loadConfigFromFile(filePath: string): Promise<IconFontReducerConfig> {
   const url = pathToFileURL(filePath).href;
   const module = await import(url);
   return module.default;
