@@ -245,7 +245,7 @@ export function parseFlags(silent: boolean): IconFontReducerFlags {
  */
 async function getCSSOrigin(intercative: boolean, config: IconFontReducerConfig, source: LibSource): Promise<string | undefined> {
   // Load source from user input if not provided in flags or config file
-  if (typeof config.lib == "object") {
+  if (typeof config.lib == "object" || typeof config.lib == "string") {
     // If the lib is directly provided as an object in the config file, use its origin values without asking the user
     return source!.origin.css;
   } else {
@@ -273,7 +273,7 @@ async function getCSSOrigin(intercative: boolean, config: IconFontReducerConfig,
  * @returns The source path of fonts directory
  */
 async function getFontsOrigin(intercative: boolean, config: IconFontReducerConfig, source: LibSource): Promise<string | undefined> {
-  if (typeof config.lib == "object") {
+  if (typeof config.lib == "object" || typeof config.lib == "string") {
     // If the lib is directly provided as an object in the config file, use its origin values without asking the user
     return source!.origin.fonts;
   } else {
