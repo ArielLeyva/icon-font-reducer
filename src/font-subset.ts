@@ -88,15 +88,7 @@ function getFontTarget(sourceFontFile: string): FontTarget {
  * @param {Array<string>} codes Array of codes to include in the subset font. Each code should be a string like "F0009" (hexadecimal).
  */
 export async function subsetFontFromCodes(sourceFontFile: string, destFontDir: string, codes: Array<string>) {
-  const buffer = fs.readFileSync(sourceFontFile);
-
-  const glyphs = getGlyphsFromCodes(codes);
-
-  const target = getFontTarget(sourceFontFile);
-
-  const subset = await subsetFont(buffer, glyphs, {
-    targetFormat: target,
-  });
+  const subset = await getSubsetBuffer(sourceFontFile, codes);
 
   // Save file in destination folder
   fs.mkdirSync(destFontDir, { recursive: true });
@@ -107,4 +99,22 @@ export async function subsetFontFromCodes(sourceFontFile: string, destFontDir: s
   const sourceFontFileSize = fs.statSync(sourceFontFile).size;
   const destFontFileSize = fs.statSync(`${destFontDir}/${name}`).size;
   console.log(`${name}: ${parseFileSize(sourceFontFileSize)} -> ${parseFileSize(destFontFileSize)} (${((1 - destFontFileSize / sourceFontFileSize) * 100).toFixed(2)}% reduction)`);
+}
+
+/**
+ * Get a subset of a font file with only the specified codes.
+ * @param sourceFontFile Path to the source font file
+ * @param codes Array of codes to include in the subset font. Each code should be a string like "F0009" (hexadecimal).
+ * @returns A Promise resolving to the subset font buffer.
+ */
+export async function getSubsetBuffer(sourceFontFile: string, codes: Array<string>) {
+  const buffer = fs.readFileSync(sourceFontFile);
+
+  const glyphs = getGlyphsFromCodes(codes);
+
+  const target = getFontTarget(sourceFontFile);
+
+  return await subsetFont(buffer, glyphs, {
+    targetFormat: target,
+  });
 }
