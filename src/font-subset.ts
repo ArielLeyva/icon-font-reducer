@@ -1,9 +1,12 @@
 import subsetFont from "subset-font";
 import fs from "fs";
 import path from "path";
+import inquirer from "inquirer";
 
-import { parseFileSize, SUPPORTED_FORMATS } from "./utils.js";
+import { findFilesInDir, parseFileSize, SUPPORTED_FORMATS } from "./utils.js";
 import { FontTarget } from "./types/subset.js";
+
+export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];
 
 /**
  * Remove leading and trailing quotes, backslashes, and convert hexadecimal codes to characters.
@@ -28,6 +31,39 @@ export function getGlyphsFromCodes(codes: Array<string>): string {
       return String.fromCodePoint(codePoint);
     })
     .join("");
+}
+
+/**
+ * Get a list of font files from a directory that match a given filter expression.
+ * @param filesPath Path to the directory containing font files
+ * @param filterExpr Regular expression to filter only font files
+ * @param intercative If true, prompt the user to select which font files to subset. If false, return all matching font files without prompting.
+ * @returns {Promise<Array<string>>} Array of paths to the selected font files
+ */
+export async function getFontFiles(filesPath: string, filterExpr: RegExp, intercative = true): Promise<Array<string>> {
+  const files = await findFilesInDir(filesPath, filterExpr);
+  const fontFiles = files.filter((file) => FONT_EXTENSIONS.includes(path.extname(file).toLowerCase()));
+
+  if (intercative) {
+    const items = fontFiles.map((file) => ({
+      name: `${file}${Object.keys(SUPPORTED_FORMATS).includes(path.extname(file).toLowerCase()) ? "" : " (Not supported format)"}`,
+      value: path.join(filesPath, file),
+      default: true,
+    }));
+
+    // Prompt user to select font files to subset
+    const answers = await inquirer.prompt([
+      {
+        type: "checkbox",
+        name: "files",
+        message: "Select the font files you want to subset:",
+        choices: items,
+      },
+    ]);
+    return answers.files;
+  } else {
+    return fontFiles.filter((file) => FONT_EXTENSIONS.includes(path.extname(file).toLowerCase())).map((file) => path.join(filesPath, file));
+  }
 }
 
 /**

@@ -9,17 +9,6 @@ export const SUPPORTED_FORMATS = {
   ".woff2": "woff2",
 } as const;
 
-export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];
-
-/**
- * Load a CSS file as text
- * @param {string} path Path to the css file
- * @returns {string} The content of the CSS file
- */
-export async function loadCSSFile(path: string): Promise<string> {
-  return await readFile(path, "utf8");
-}
-
 /**
  *
  * @param {string} dir Path to the directory to search

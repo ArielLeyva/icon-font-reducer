@@ -1,23 +1,14 @@
 #!/usr/bin/env node
-import css from "css";
-import * as sass from "sass";
-import inquirer from "inquirer";
 import path from "path";
 
-import { loadCSSFile, findExprInDir, findFilesInDir, SUPPORTED_FORMATS, FONT_EXTENSIONS } from "../src/utils.js";
-import { subsetFontFromCodes } from "../src/font-subset.js";
+import { findExprInDir } from "../src/utils.js";
+import { getFontFiles, subsetFontFromCodes } from "../src/font-subset.js";
 import { getConfig } from "../src/init-config.js";
+import { extractGlyphsCodes, getParsedCss } from "../src/css-utils.js";
 
 console.log("Initializing font reducer...");
 
 const config = await getConfig();
-
-// Load the CSS file and parse it
-const content = config.origin.css!.endsWith(".css") ? await loadCSSFile(config.origin.css!) : sass.compile(config.origin.css!).css;
-const ast: css.Stylesheet = css.parse(content);
-if (ast == undefined) {
-  throw new Error("The CSS file could not be parsed.");
-}
 
 // Find icons usage in the codebase
 const classes: Array<string> = [];
@@ -30,48 +21,20 @@ if (config.additional) {
   classes.push(...config.additional);
 }
 
-// Find the content values for the used icons
-const codes: Array<string> = [];
-ast.stylesheet!.rules.forEach((rule: any) => {
-  for (const cls of classes) {
-    // Find rules that match the source selector
-    if (rule.selectors && rule.selectors.includes(config.selector(cls))) {
-      // Extract the content value from the declarations
-      rule.declarations.forEach((decl: any) => {
-        if (decl.property === config.property) {
-          codes.push(decl.value);
-        }
-      });
-    }
-  }
-});
+// Load the CSS file and parse it
+const ast = await getParsedCss(config.origin.css!);
+const codes = extractGlyphsCodes(ast, classes, config.selector, config.property);
 console.log(`${codes.length} icons found in your code.`);
 
 // Load font files in directory
 console.log(`Find font files in the codebase...`);
-const fontFiles = await findFilesInDir(config.origin.fonts!, config.expression.files);
-const items = fontFiles
-  .filter((file) => FONT_EXTENSIONS.includes(path.extname(file).toLowerCase()))
-  .map((file) => ({
-    name: `${file}${Object.keys(SUPPORTED_FORMATS).includes(path.extname(file).toLowerCase()) ? "" : " (Not supported format)"}`,
-    value: path.join(config.origin.fonts!, file),
-    default: true,
-  }));
-
-// Prompt user to select font files to subset
-const answers = await inquirer.prompt([
-  {
-    type: "checkbox",
-    name: "files",
-    message: "Select the font files you want to subset:",
-    choices: items,
-  },
-]);
 
 // Get destination folder
 const dest = config.dest ?? path.join(process.cwd(), "icon-font-reducer-dest");
+
 // Subset the selected font files
-for (const file of answers.files) {
+const fontFiles = await getFontFiles(config.origin.fonts!, config.expression.files);
+for (const file of fontFiles) {
   await subsetFontFromCodes(file, dest, codes);
 }
 
