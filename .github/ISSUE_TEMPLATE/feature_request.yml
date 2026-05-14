@@ -1,0 +1,40 @@
+name: Feature Request
+description: Suggest an idea or enhancement for the project
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement for Icon Font Reducer.
+
+        Please describe the feature and its use case clearly.
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature Description
+      description: Describe the feature you would like to see
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Explain the problem this feature would solve
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: Explain why this feature would benefit the project or users
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or workarounds you've tried

@@ -1,0 +1,100 @@
+name: Bug Report
+description: Report a reproducible problem or unexpected behavior
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug in Icon Font Reducer.
+
+        Please provide as much detail as possible so the issue can be reproduced quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: Clearly describe the issue you encountered
+      placeholder: Explain what happened and what you expected instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: List the exact steps needed to reproduce the issue
+      placeholder: |
+        1. Install package
+        2. Run command...
+        3. Observe error...
+    validations:
+      required: true
+
+  - type: input
+    id: ifr-version
+    attributes:
+      label: Icon Font Reducer Version
+      placeholder: e.g. 1.2.0
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      placeholder: e.g. v22.3.0
+    validations:
+      required: true
+
+  - type: input
+    id: npm-version
+    attributes:
+      label: NPM Version
+      placeholder: e.g. 10.8.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Command Used
+      description: Paste the exact command you executed
+      render: shell
+      placeholder: |
+        npm icon-font-reducer --dest="/public/icons"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: custom-config
+    attributes:
+      label: Using Custom Config?
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Custom Config (if applicable)
+      description: Paste your config file if relevant
+      render: json
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or Error Messages
+      description: Include any relevant terminal output or stack traces
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or relevant details
