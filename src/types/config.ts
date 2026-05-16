@@ -1,5 +1,5 @@
 export interface LibSourceFiles {
-  css?: string;
+  css?: string | null;
   fonts?: string;
 }
 

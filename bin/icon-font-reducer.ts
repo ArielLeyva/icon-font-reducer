@@ -5,6 +5,7 @@ import { findExprInDir } from "../src/utils.js";
 import { getFontFiles, subsetFontFromCodes } from "../src/font-subset.js";
 import { getConfig } from "../src/init-config.js";
 import { extractGlyphsCodes, getParsedCss } from "../src/css-utils.js";
+import { getCodesFromGlyphNames } from "../src/font-utils.js";
 
 console.log("Initializing font reducer...");
 
@@ -21,10 +22,19 @@ if (config.additional) {
   classes.push(...config.additional);
 }
 
-// Load the CSS file and parse it
-const ast = await getParsedCss(config.origin.css!);
-const codes = extractGlyphsCodes(ast, classes, config.selector, config.property);
-console.log(`${codes.length} icons found in your code.`);
+// Load font files in directory
+const fontFiles = await getFontFiles(config.origin.fonts!, config.expression.files);
+
+let codes: Array<string> = [];
+if (config.origin.css == null) {
+  // Extract glyph names from the used classes by applying the source selector function to them
+  codes = await getCodesFromGlyphNames(fontFiles[0], classes, config.selector);
+} else {
+  // Load the CSS file and parse it
+  const ast = await getParsedCss(config.origin.css!);
+  codes = extractGlyphsCodes(ast, classes, config.selector, config.property);
+  console.log(`${codes.length} icons found in your code.`);
+}
 
 // Load font files in directory
 console.log(`Find font files in the codebase...`);
@@ -33,7 +43,6 @@ console.log(`Find font files in the codebase...`);
 const dest = config.dest ?? path.join(process.cwd(), "icon-font-reducer-dest");
 
 // Subset the selected font files
-const fontFiles = await getFontFiles(config.origin.fonts!, config.expression.files);
 for (const file of fontFiles) {
   await subsetFontFromCodes(file, dest, codes);
 }

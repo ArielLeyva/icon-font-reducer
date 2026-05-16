@@ -246,12 +246,13 @@ export function parseFlags(silent: boolean): IconFontReducerFlags {
  * @param source The specific configuration of the library to use
  * @returns The source path of the CSS or SCSS file
  */
-async function getCSSOrigin(intercative: boolean, config: IconFontReducerConfig, source: LibSource): Promise<string | undefined> {
+async function getCSSOrigin(intercative: boolean, config: IconFontReducerConfig, source: LibSource): Promise<string | undefined | null> {
   // Load source from user input if not provided in flags or config file
-  if (typeof config.lib == "object" || typeof config.lib == "string") {
+  if (typeof config.lib == "object" || (typeof config.lib == "string" && !intercative)) {
     // If the lib is directly provided as an object in the config file, use its origin values without asking the user
     return source!.origin.css;
   } else {
+    if (source!.origin.css == null) return null;
     if (intercative) {
       const answer = await inquirer.prompt([
         {
