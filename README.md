@@ -78,17 +78,17 @@ bootstrap-icons.woff2: 130.90 KB -> 9.39 KB (92.83% reduction)
 
 ## Available libs
 
-| Name | Lib ID |
-|----------|-----------|
-| [Material Design Icons](https://pictogrammers.com/library/mdi/) | `materialdesign` |
-| [Bootstrap Icons](https://icons.getbootstrap.com/) | `bootstrap` |
-| [Remix Icons](https://remixicon.com/) | `remix` |
-| [CoreUI Icons](https://coreui.io/icons/) | `coreui-linear \| coreui-brand` |
-| [FontAwesome (Free)](https://fontawesome.com/) | `font-awesome-free` |
-| [LineAwesome](https://icons8.com/line-awesome/) | `line-aswesome` |
-| [Lineicons](https://lineicons.com/) | `line-icons` |
-| [Lucide (Static)](https://lucide.dev/guide/static/font/) | `lucide-static` |
-| [Material Symbols](https://fonts.google.com/icons/) | `material-symbols-outlined \| material-symbols-rounded \| material-symbols-sharp` |
+| Name | Lib ID | Package |
+|----------|-----------|-----------|
+| [Material Design Icons](https://pictogrammers.com/library/mdi/) | `materialdesign` | [@mdi/font](https://www.npmjs.com/package/@mdi/font) |
+| [Bootstrap Icons](https://icons.getbootstrap.com/) | `bootstrap` | [bootstrap-icons](https://www.npmjs.com/package/bootstrap-icons) |
+| [Remix Icons](https://remixicon.com/) | `remix` | [remix](https://www.npmjs.com/package/remixicon) |
+| [CoreUI Icons](https://coreui.io/icons/) | `coreui-linear \| coreui-brand` | [@coreui/icons](https://www.npmjs.com/package/@coreui/icons) |
+| [FontAwesome (Free)](https://fontawesome.com/) | `font-awesome-free` | [@fortawesome/fontawesome-free](https://www.npmjs.com/package/@fortawesome/fontawesome-free) |
+| [LineAwesome](https://icons8.com/line-awesome/) | `line-aswesome` | [line-awesome](https://www.npmjs.com/package/line-awesome) |
+| [Lineicons](https://lineicons.com/) | `line-icons` | [lineicons](https://www.npmjs.com/package/lineicons) |
+| [Lucide (Static)](https://lucide.dev/guide/static/font/) | `lucide-static` | [lucide-static](https://www.npmjs.com/package/lucide-static) |
+| [Material Symbols](https://fonts.google.com/icons/) | `material-symbols-outlined \| material-symbols-rounded \| material-symbols-sharp` | [material-symbols](https://www.npmjs.com/package/material-symbols) |
 
 ---
 
@@ -183,7 +183,7 @@ These are all the properties you will need to define with examples using the [Bo
 | Key | Type | Description | Example |
 |-----------|-----------|-----------|-----------|
 | `name` | string | The name of the library or your custom implementation. You are free to write any string here; Icon Font Reducer only uses it to give grammatical meaning to the console output. | "Boostrap Icons" |
-| `origin.css` | string | The CSS or SCSS file of the icon library you are using. If you specify an SCSS file, it will first be compiled to obtain its CSS content. | "node_modules/bootstrap-icons/font/bootstrap-icons.min.css" |
+| `origin.css` | string or null | The CSS or SCSS file of the icon library you are using. If you specify an SCSS file, it will first be compiled to obtain its CSS content. Pass null when the icon's unicode code cannot be obtained via CSS (for example, in libraries dependent on ligatures and glyphs with names like Material Symbols); in this case, the unicode code will be searched for directly in the source file through the glyph name. | "node_modules/bootstrap-icons/font/bootstrap-icons.min.css" |
 | `origin.fonts` | string | Directory where the original (or unreduced) font files of your icon library are located. The directory should contain all the font icon files that you need to reduce with Icon Font Reducer. | node_modules/bootstrap-icons/font/fonts |
 | `expression.classes` | RegExp | Regular expression to find the icons used in your project. It must be a regular expression that matches the CSS class of the library. [Here][how-expressionclasses-works-in-bootstrap-icons] is a detailed explanation of this property. | /bi-[a-z0-9-]+/gi |
 | `expression.files` | RegExp or undefined | Regular expression to find the original icon files in the library. This must be a regular expression that matches the filenames you need to reduce using Icon Font Reducer. You can leave it blank to list all files found in `origin.fonts` and then select the files you need to reduce via the console. [Here][how-expressionfiles-works-in-bootstrap-icons] is a detailed explanation of this property. | /bootstrap-icons+/gi |
