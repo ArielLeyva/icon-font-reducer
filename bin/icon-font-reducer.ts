@@ -23,21 +23,20 @@ if (config.additional) {
 }
 
 // Load font files in directory
+console.log(`Find font files in the codebase...`);
 const fontFiles = await getFontFiles(config.origin.fonts!, config.expression.files);
 
 let codes: Array<string> = [];
 if (config.origin.css == null) {
   // Extract glyph names from the used classes by applying the source selector function to them
   codes = await getCodesFromGlyphNames(fontFiles[0], classes, config.selector);
+  console.log(`${codes.length / 2} icons found in your code.`);
 } else {
   // Load the CSS file and parse it
   const ast = await getParsedCss(config.origin.css!);
   codes = extractGlyphsCodes(ast, classes, config.selector, config.property);
   console.log(`${codes.length} icons found in your code.`);
 }
-
-// Load font files in directory
-console.log(`Find font files in the codebase...`);
 
 // Get destination folder
 const dest = config.dest ?? path.join(process.cwd(), "icon-font-reducer-dest");

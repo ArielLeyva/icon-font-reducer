@@ -88,6 +88,7 @@ bootstrap-icons.woff2: 130.90 KB -> 9.39 KB (92.83% reduction)
 | [LineAwesome](https://icons8.com/line-awesome/) | `line-aswesome` |
 | [Lineicons](https://lineicons.com/) | `line-icons` |
 | [Lucide (Static)](https://lucide.dev/guide/static/font/) | `lucide-static` |
+| [Material Symbols](https://fonts.google.com/icons/) | `material-symbols-outlined \| material-symbols-rounded \| material-symbols-sharp` |
 
 ---
 

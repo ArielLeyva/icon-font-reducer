@@ -100,4 +100,82 @@ export const LUCIDE: LibSource = {
   selector: (cls: string) => `.${cls}::before`,
 };
 
-export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME, LINE_ICONS, LUCIDE];
+export const MATERIAL_SYMBOLS_OUTLINED: LibSource = {
+  id: "material-symbols-outlined",
+  name: "Material Symbols (Outlined)",
+  origin: {
+    css: null,
+    fonts: "node_modules/material-symbols/",
+  },
+  expression: { classes: /<span\b[^>]*\bclass\s*=\s*["'][^"']*\bmaterial-symbols-outlined\b[^"']*["'][^>]*>(.*?)<\/span>/gis, files: /material-symbols-outlined\.[a-z0-9-]+/gi },
+  selector: (span: string) => {
+    const regex = /<span\b([^>]*)>(.*?)<\/span>/is;
+    const match = span.match(regex);
+    if (!match) return "";
+
+    const attrs = match[1];
+    const content = match[2];
+
+    const classMatch = attrs.match(/class\s*=\s*["']([^"']*)["']/i);
+    if (!classMatch) return "";
+
+    const classes = classMatch[1].split(/\s+/);
+    if (!classes.includes("material-symbols-outlined")) return "";
+
+    return content.trim();
+  },
+};
+
+export const MATERIAL_SYMBOLS_ROUNDED: LibSource = {
+  id: "material-symbols-rounded",
+  name: "Material Symbols (Rounded)",
+  origin: {
+    css: null,
+    fonts: "node_modules/material-symbols/",
+  },
+  expression: { classes: /<span\b[^>]*\bclass\s*=\s*["'][^"']*\bmaterial-symbols-rounded\b[^"']*["'][^>]*>(.*?)<\/span>/gis, files: /material-symbols-rounded\.[a-z0-9-]+/gi },
+  selector: (span: string) => {
+    const regex = /<span\b([^>]*)>(.*?)<\/span>/is;
+    const match = span.match(regex);
+    if (!match) return "";
+
+    const attrs = match[1];
+    const content = match[2];
+
+    const classMatch = attrs.match(/class\s*=\s*["']([^"']*)["']/i);
+    if (!classMatch) return "";
+
+    const classes = classMatch[1].split(/\s+/);
+    if (!classes.includes("material-symbols-rounded")) return "";
+
+    return content.trim();
+  },
+};
+
+export const MATERIAL_SYMBOLS_SHARP: LibSource = {
+  id: "material-symbols-sharp",
+  name: "Material Symbols (Sharp)",
+  origin: {
+    css: null,
+    fonts: "node_modules/material-symbols/",
+  },
+  expression: { classes: /<span\b[^>]*\bclass\s*=\s*["'][^"']*\bmaterial-symbols-sharp\b[^"']*["'][^>]*>(.*?)<\/span>/gis, files: /material-symbols-sharp\.[a-z0-9-]+/gi },
+  selector: (span: string) => {
+    const regex = /<span\b([^>]*)>(.*?)<\/span>/is;
+    const match = span.match(regex);
+    if (!match) return "";
+
+    const attrs = match[1];
+    const content = match[2];
+
+    const classMatch = attrs.match(/class\s*=\s*["']([^"']*)["']/i);
+    if (!classMatch) return "";
+
+    const classes = classMatch[1].split(/\s+/);
+    if (!classes.includes("material-symbols-sharp")) return "";
+
+    return content.trim();
+  },
+};
+
+export const AVAILABLE_LIBS = [MATERIAL_DESIGN, BOOTSTRAP, REMIX, COREUI_LINEAR, COREUI_BRAND, FONT_AWESOME_FREE, LINE_AWESOME, LINE_ICONS, LUCIDE, MATERIAL_SYMBOLS_OUTLINED, MATERIAL_SYMBOLS_ROUNDED, MATERIAL_SYMBOLS_SHARP];

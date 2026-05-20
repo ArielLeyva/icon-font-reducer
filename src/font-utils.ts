@@ -31,7 +31,7 @@ export async function getCodesFromGlyphNames(filePath: string, classes: Array<st
     if (!glyph.length) {
       continue;
     }
-
+    result.push(`_${glyphName}`);
     result.push(glyph[0].unicode[0].toString(16));
   }
 

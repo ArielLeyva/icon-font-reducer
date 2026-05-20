@@ -16,6 +16,10 @@ export const FONT_EXTENSIONS = [".ttf", ".otf", ".woff", ".woff2", ".eot"];
 export function getGlyphsFromCodes(codes: Array<string>): string {
   return codes
     .map((raw) => {
+      if (raw.startsWith("_")) {
+        return raw.substring(1);
+      }
+      
       // Remove leading and trailing quotes
       let clean = raw.replace(/^"+|"+$/g, "");
 
@@ -116,5 +120,6 @@ export async function getSubsetBuffer(sourceFontFile: string, codes: Array<strin
 
   return await subsetFont(buffer, glyphs, {
     targetFormat: target,
+    noLayoutClosure: true,
   });
 }
