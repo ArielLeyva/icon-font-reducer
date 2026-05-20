@@ -78,17 +78,17 @@ bootstrap-icons.woff2: 130.90 KB -> 9.39 KB (92.83% reduction)
 
 ## Available libs
 
-| Name | Lib ID |
-|----------|-----------|
-| [Material Design Icons](https://pictogrammers.com/library/mdi/) | `materialdesign` |
-| [Bootstrap Icons](https://icons.getbootstrap.com/) | `bootstrap` |
-| [Remix Icons](https://remixicon.com/) | `remix` |
-| [CoreUI Icons](https://coreui.io/icons/) | `coreui-linear \| coreui-brand` |
-| [FontAwesome (Free)](https://fontawesome.com/) | `font-awesome-free` |
-| [LineAwesome](https://icons8.com/line-awesome/) | `line-aswesome` |
-| [Lineicons](https://lineicons.com/) | `line-icons` |
-| [Lucide (Static)](https://lucide.dev/guide/static/font/) | `lucide-static` |
-| [Material Symbols](https://fonts.google.com/icons/) | `material-symbols-outlined \| material-symbols-rounded \| material-symbols-sharp` |
+| Name | Lib ID | Package |
+|----------|-----------|-----------|
+| [Material Design Icons](https://pictogrammers.com/library/mdi/) | `materialdesign` | [@mdi/font](https://www.npmjs.com/package/@mdi/font) |
+| [Bootstrap Icons](https://icons.getbootstrap.com/) | `bootstrap` | [bootstrap-icons](https://www.npmjs.com/package/bootstrap-icons) |
+| [Remix Icons](https://remixicon.com/) | `remix` | [remix](https://www.npmjs.com/package/remixicon) |
+| [CoreUI Icons](https://coreui.io/icons/) | `coreui-linear \| coreui-brand` | [@coreui/icons](https://www.npmjs.com/package/@coreui/icons) |
+| [FontAwesome (Free)](https://fontawesome.com/) | `font-awesome-free` | [@fortawesome/fontawesome-free](https://www.npmjs.com/package/@fortawesome/fontawesome-free) |
+| [LineAwesome](https://icons8.com/line-awesome/) | `line-aswesome` | [line-awesome](https://www.npmjs.com/package/line-awesome) |
+| [Lineicons](https://lineicons.com/) | `line-icons` | [lineicons](https://www.npmjs.com/package/lineicons) |
+| [Lucide (Static)](https://lucide.dev/guide/static/font/) | `lucide-static` | [lucide-static](https://www.npmjs.com/package/lucide-static) |
+| [Material Symbols](https://fonts.google.com/icons/) | `material-symbols-outlined \| material-symbols-rounded \| material-symbols-sharp` | [material-symbols](https://www.npmjs.com/package/material-symbols) |
 
 ---
 
