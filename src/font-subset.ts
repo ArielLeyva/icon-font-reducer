@@ -19,7 +19,7 @@ export function getGlyphsFromCodes(codes: Array<string>): string {
       if (raw.startsWith("_")) {
         return raw.substring(1);
       }
-      
+
       // Remove leading and trailing quotes
       let clean = raw.replace(/^"+|"+$/g, "");
 
