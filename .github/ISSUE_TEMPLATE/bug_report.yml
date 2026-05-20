@@ -82,7 +82,7 @@ body:
     attributes:
       label: Custom Config (if applicable)
       description: Paste your config file if relevant
-      render: json
+      render: js
 
   - type: textarea
     id: logs
